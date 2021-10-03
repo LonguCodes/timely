@@ -1,0 +1,98 @@
+.root
+  position: relative
+  height: 100%
+  display: flex
+  flex-direction: column
+
+.table__lines
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  display: flex
+  flex-direction: column
+  justify-content: stretch
+
+.table__line
+  border-top: 1px grey dashed
+  width: 100%
+  flex-grow: 1
+
+.week__table
+  display: flex
+  flex-direction: row
+  justify-content: space-evenly
+  column-gap: 1%
+  padding: 0 1%
+  position: relative
+  flex-grow: 1
+
+.hour__column
+  display: flex
+  flex-direction: column
+  justify-content: stretch
+  height: 100%
+  & > *
+    flex-grow: 1
+    display: flex
+    align-items: center
+    justify-content: center
+
+
+
+.week__column
+  flex-grow: 0
+  display: flex
+  flex-direction: column
+  align-items: stretch
+  row-gap: 2.5%
+  width: 100%
+  height: 100%
+  position: relative
+
+
+.top__bar
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  column-gap: 2.5%
+  & > *
+    margin: 5px
+
+.move__date
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  & > *:not(first)
+    margin-left: 5px
+
+
+.move__date__button
+  padding: 5px 10px
+  border-radius: 5px
+
+
+.file__choise
+  border: 2px solid #ccc
+  border-radius: 5px
+  position: relative
+  padding: 5px 10px
+  cursor: pointer
+  & > *
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    margin: 0
+    padding: 0
+    cursor: default
+    opacity: 0
+    filter: alpha(opacity=0)
+    pointer-events: none
+
+
+

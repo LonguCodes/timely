@@ -1,0 +1,90 @@
+.day__card
+  border-radius: 5px
+  padding: 10px
+  box-shadow: #aaa 3px 3px 8px 3px
+  position: absolute
+  display: flex
+  flex-direction: column
+  transition-property: transform
+  transition-duration: 0.1s
+  background-color: #fcfcfc
+  row-gap: 5px
+  &::before
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    width: 100%
+    height: 100%
+    border-radius: 5px
+    box-shadow: #777 2px 2px 2px 1px
+.day__card:hover
+  z-index: 1000 !important
+  transform: scale(1.025)
+
+.group__display__row
+  display: flex
+  flex-direction: row
+  column-gap: 5px
+  align-items: center
+  width: 100%
+
+.group__tag
+  border-radius: 1em
+  padding: 0.1em 0.6em
+  text-align: center
+  vertical-align: center
+  font-size: .8em
+
+.title
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: center
+  height: 1.5rem
+
+.title__text
+  overflow: hidden
+  text-wrap: none
+  white-space: nowrap
+  margin-right: 15px
+
+.icon
+  height: 100%
+  & > *
+    height: 100%
+  position: relative
+.tooltip
+  position: absolute
+  bottom: 100%
+  left: 50%
+  transform: translateX(-50%)
+  opacity: 0
+  transition-duration: 0.15s
+  transition-property: opacity
+  background-color: #ddd
+  border-radius: 1em
+  padding: 0.25em 0.5em
+
+.icon:hover > .tooltip
+  opacity: 1
+
+.timespan__large
+  pointer-events: none
+  display: none
+  @media screen and (min-height: 1200px)
+    display: block
+    pointer-events: auto
+
+.timespan__normal
+  pointer-events: none
+  display: none
+  @media screen and (max-height: 1200px)
+    display: block
+    pointer-events: auto
+
+
+
+

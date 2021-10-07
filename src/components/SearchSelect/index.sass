@@ -1,0 +1,46 @@
+.root
+  display: flex
+  position: relative
+  &:focus-within .choise__options, &:focus .choise__options
+    opacity: 100
+    pointer-events: auto
+
+
+  &:focus-within .text__field, &:focus .text__field
+    border-radius: 5px 5px 0 0
+
+.text__field
+  border: 2px solid #ccc
+  border-radius: 5px
+  padding: 5px 10px
+  outline: none
+  transition-duration: 0.1s
+  transition-property: border-radius
+  &:focus
+    outline: none
+
+
+.choise__options
+  display: flex
+  position: absolute
+  flex-direction: column
+  opacity: 0
+  top: 100%
+  left: 0
+  right: 0
+  justify-content: center
+  pointer-events: none
+  align-items: stretch
+  transition-property: opacity
+  transition-duration: 0.1s
+  border-radius: 0 0 5px 5px
+  background-color: #fefefe
+  z-index: 900
+  border: 2px solid #ccc
+  border-top: none
+.option
+  text-align: center
+  &:hover
+    background-color: #fafafa
+
+

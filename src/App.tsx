@@ -6,6 +6,11 @@ import { EventModel } from './models/event.model';
 import { DiProviderGlobal } from './common/di-provider.global';
 import { EventDataRepository } from './repository';
 import './common/array-polyfill';
+import axios from 'axios';
+import { useGetAsync } from './common/useAsyncState';
+import { useDelayState } from './common/useDelayState';
+import { useTriggerToken } from './common/trigger-token';
+import { SearchSelect } from './components/SearchSelect';
 
 export const dayStart = DateTime.fromFormat('6:00', 'H:m');
 export const dayEnd = DateTime.fromFormat('24:00', 'H:m');
@@ -20,12 +25,25 @@ function isOverlapping(a: EventModel, b: EventModel) {
 	return !(a.startTime >= b.endTime || a.endTime <= b.startTime);
 }
 
+async function getCurriculaData(name: string | undefined) {
+	const result = await axios.get(`http://localhost:3000/${name ?? ''}`);
+
+	console.log(result.data);
+	return result.data as { id: string; name: string }[];
+}
+
 export function App() {
+	const curriculaTriggerToken = useTriggerToken();
+
 	const [rawData, setRawData] = useState<EventModel[]>([]);
 	const [data, setData] = useState<Record<string, EventModel[]>>({});
 	const [dayRangeStart, setStartDay] = useState(
 		DateTime.now().startOf('week')
 	);
+
+	// const curricula = useGetAsync(() => getCurriculaData(searchName), {
+	// 	token: curriculaTriggerToken,
+	// });
 
 	const [groups, setGroups] = useState<EventGroup[]>([]);
 	const [chosenGroup, setChosenGroup] = useState(null);
@@ -80,6 +98,23 @@ export function App() {
 	return (
 		<div className={styles.root}>
 			<div className={styles.top__bar}>
+				<SearchSelect
+					callback={() => {}}
+					items={[
+						{
+							id: '1',
+							display: 'name',
+						},
+						{
+							id: '2',
+							display: 'name',
+						},
+						{
+							id: '3',
+							display: 'name',
+						},
+					]}
+				/>
 				<label className={styles.file__choise}>
 					<input
 						type="file"
@@ -109,7 +144,7 @@ export function App() {
 				</div>
 				<label>
 					Show group :
-					<select name="fruit" onChange={handleChangeGroup}>
+					<select onChange={handleChangeGroup}>
 						<option value="null">All</option>
 						{groups.map((x) => (
 							<option value={x.id}>{x.name}</option>
